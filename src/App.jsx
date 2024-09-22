@@ -1,5 +1,5 @@
 //#region imports
-import ".cls/assets/css/App.css";
+import "./assets/css/App.css";
 import { useState } from "react";
 //#endregion imports
 
