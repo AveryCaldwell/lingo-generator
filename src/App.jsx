@@ -1,10 +1,12 @@
-//#region imports
+// src/App.jsx
 import "./assets/css/App.css";
 import { useState } from "react";
-
-//#endregion imports
+import Modal from "./components/Modal";
+import useToggle from "./Hooks/useToggle";
 
 function App() {
+  const { on, toggler } = useToggle(); // Custom hook for toggling modal
+
   const lingoArray = [
     "Very mindful, very cutesy",
     "Show me to me Rachel",
@@ -25,10 +27,11 @@ function App() {
     "type 💩",
     "That's on business",
   ];
-  // state to store the current lingo
+
+  // State to store the current lingo
   const [currentLingo, setCurrentLingo] = useState("");
 
-  // function to generate random lingo from the array
+  // Function to generate random lingo from the array
   const generateLingo = () => {
     const randomIndex = Math.floor(Math.random() * lingoArray.length);
     setCurrentLingo(lingoArray[randomIndex]);
@@ -38,25 +41,31 @@ function App() {
     <>
       <div className="appContainer">
         <h1 className="appHeader">Lingo Generator</h1>
-        {/* LINGO GENERATOR SECTION */}
+        {/* Lingo Generator Section */}
         <div className="card">
           <p>Stay hip with the fellow youths!</p>
           <button className="generateBtn" onClick={generateLingo}>
-            Generate lingo{" "}
+            Generate Lingo
           </button>
-          {/* OUTPUT SECTION */}
+          {/* Output Section */}
           <div className="outputContainer">{currentLingo}</div>
         </div>
+
+        {/* Upgrade Button */}
+        <div className="upgradeContainer">
+          <p>Unlock the full power of LingoGenerator PRO</p>
+          <p>
+            Get every feature the LingoGenerator has to offer including the
+            LingoTranslator!
+          </p>
+          <button className="upgradeBtn" onClick={toggler}>
+            Upgrade Now
+          </button>
+        </div>
       </div>
-      {/* UPGRADE SECTION */}
-      <div className="upgradeContainer">
-        <p>Unlock the full power of lingoGenerator PRO </p>
-        <p>
-          Get every feature the lingoGenerator has to offer including the
-          lingoTranslator!
-        </p>
-        <p>Start slaying for only $69.99/month, periodt.</p>
-      </div>
+
+      {/* Conditionally render the Modal based on 'on' */}
+      {on && <Modal toggler={toggler} />}
     </>
   );
 }
