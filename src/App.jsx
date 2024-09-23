@@ -1,6 +1,7 @@
 //#region imports
 import "./assets/css/App.css";
 import { useState } from "react";
+
 //#endregion imports
 
 function App() {
@@ -55,7 +56,6 @@ function App() {
           lingoTranslator!
         </p>
         <p>Start slaying for only $69.99/month, periodt.</p>
-        <a href="#">Upgrade Up Now</a>
       </div>
     </>
   );
